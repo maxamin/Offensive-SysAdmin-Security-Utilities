@@ -1,0 +1,39 @@
+---
+- block:
+
+  - name: 'seclists : check for existing installation'
+    stat: path=/usr/share/wordlists/rockyou.txt
+    register: rockyou
+
+  - name: 'seclists : clone repository'
+    git:
+      accept_hostkey: yes
+      clone: yes
+      depth: 1
+      dest: /usr/share/seclists
+      force: yes
+      repo: https://github.com/danielmiessler/SecLists.git
+    when: not rockyou.stat.exists
+
+  - name: 'seclists : extract rockyou archive'
+    unarchive:
+      dest: /usr/share/wordlists/
+      group: root
+      mode: 0664
+      owner: root
+      remote_src: yes
+      src: /usr/share/seclists/Passwords/Leaked-Databases/rockyou.txt.tar.gz
+    when: not rockyou.stat.exists
+
+  - name: 'seclists : cleanup temp files'
+    file:
+      dest: '{{ item }}'
+      state: absent
+    with_items:      
+      - /usr/share/seclists/Passwords/Leaked-Databases/rockyou.txt.tar.gz
+      - /usr/share/seclists/Passwords/Leaked-Databases/rockyou-withcount.txt.tar.gz
+    when: not rockyou.stat.exists
+
+  tags:
+    - lists
+    - seclists

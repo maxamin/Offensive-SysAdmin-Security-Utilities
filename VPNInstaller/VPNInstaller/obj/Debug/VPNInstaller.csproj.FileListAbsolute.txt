@@ -1,0 +1,10 @@
+C:\Users\dev\source\repos\VPNInstaller\VPNInstaller\bin\Debug\VPNInstaller.exe.config
+C:\Users\dev\source\repos\VPNInstaller\VPNInstaller\bin\Debug\VPNInstaller.exe
+C:\Users\dev\source\repos\VPNInstaller\VPNInstaller\bin\Debug\VPNInstaller.pdb
+C:\Users\dev\source\repos\VPNInstaller\VPNInstaller\obj\Debug\VPNInstaller.csprojAssemblyReference.cache
+C:\Users\dev\source\repos\VPNInstaller\VPNInstaller\obj\Debug\VPNInstaller.Form1.resources
+C:\Users\dev\source\repos\VPNInstaller\VPNInstaller\obj\Debug\VPNInstaller.Properties.Resources.resources
+C:\Users\dev\source\repos\VPNInstaller\VPNInstaller\obj\Debug\VPNInstaller.csproj.GenerateResource.cache
+C:\Users\dev\source\repos\VPNInstaller\VPNInstaller\obj\Debug\VPNInstaller.csproj.CoreCompileInputs.cache
+C:\Users\dev\source\repos\VPNInstaller\VPNInstaller\obj\Debug\VPNInstaller.exe
+C:\Users\dev\source\repos\VPNInstaller\VPNInstaller\obj\Debug\VPNInstaller.pdb

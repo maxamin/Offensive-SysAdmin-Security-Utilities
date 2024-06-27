@@ -1,0 +1,49 @@
+---
+- block:
+
+  - name: 'gobuster : check for existing installation'
+    stat: path=/usr/local/bin/gobuster
+    register: gobuster
+
+  - name: 'gobuster : clone repository'
+    git:
+      accept_hostkey: yes
+      clone: yes
+      depth: 1
+      dest: /tmp/gobuster
+      force: yes
+      repo: https://github.com/OJ/gobuster.git
+    when: not gobuster.stat.exists
+
+  - name: 'gobuster : exec go get'
+    shell: '/bin/bash -lc "go get"'
+    args:
+      chdir: /tmp/gobuster
+    when: not gobuster.stat.exists
+
+  - name: 'gobuster : exec go build'
+    shell: '/bin/bash -lc "go build"'
+    args:
+      chdir: /tmp/gobuster
+    when: not gobuster.stat.exists
+
+  - name: 'gobuster : install'
+    copy:
+      dest: /usr/local/bin/gobuster
+      mode: 0775
+      remote_src: yes
+      src: /tmp/gobuster/gobuster
+    when: not gobuster.stat.exists
+
+  - name: 'gobuster : cleanup build fragments'
+    file:
+      dest: '{{ item }}'
+      state: absent
+    with_items:
+      - /tmp/gobuster
+      - /root/.go/bin/gobuster
+    when: not gobuster.stat.exists
+
+  tags:
+    - web
+    - gobuster

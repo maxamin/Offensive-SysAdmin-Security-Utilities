@@ -1,0 +1,5 @@
+---
+- include: ssh.yml tags=services,ssh
+- include: apache.yml tags=services,apache
+- include: postgres.yml tags=services,postgres
+- include: neo4j.yml tags=services,neo4j

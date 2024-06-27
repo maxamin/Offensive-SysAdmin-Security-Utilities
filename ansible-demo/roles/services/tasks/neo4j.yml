@@ -1,0 +1,32 @@
+---
+- block:
+
+  - name: 'packages : add 3rd party apt keys : neo4j'
+    apt_key:
+      url: https://debian.neo4j.com/neotechnology.gpg.key
+      state: present
+
+  - name: 'packages : add 3rd party apt repos : sublimetext'
+    apt_repository:
+      repo: deb https://download.sublimetext.com/ apt/stable/
+
+  - name: 'packages : add 3rd party apt repos : neo4j'
+    apt_repository:
+      repo: deb https://debian.neo4j.com stable 4.0
+
+  - name: 'neo4j : install packages'
+    apt:
+      name:
+        - neo4j
+      state: present
+      update_cache: yes
+
+  - name: 'neo4j : stop and disable service'
+    service:
+      enabled: no
+      name: neo4j
+      state: stopped
+
+  tags:
+    - services
+    - neo4j

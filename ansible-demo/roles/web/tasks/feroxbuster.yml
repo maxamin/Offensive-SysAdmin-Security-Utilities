@@ -1,0 +1,30 @@
+---
+- block:
+
+  - name: 'feroxbuster : check for existing installation'
+    stat: path=/usr/local/bin/feroxbuster
+    register: feroxbuster
+
+  - name: 'feroxbuster : build and install'
+    shell: '/bin/bash -lc "cargo install feroxbuster"'
+    when: not feroxbuster.stat.exists
+
+  - name: 'feroxbuster : install'
+    copy:
+      dest: /usr/local/bin/feroxbuster
+      mode: 0775
+      remote_src: yes
+      src: /root/.cargo/bin/feroxbuster
+    when: not feroxbuster.stat.exists
+
+  - name: 'feroxbuster : cleanup build fragments'
+    file:
+      dest: '{{ item }}'
+      state: absent
+    with_items:      
+      - /root/.cargo/bin/feroxbuster
+    when: not feroxbuster.stat.exists
+
+  tags:
+    - web
+    - feroxbuster

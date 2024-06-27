@@ -1,0 +1,17 @@
+C:\Users\dev\source\repos\Transformer\Transformer\bin\Debug\net6.0-windows\Transformer.exe
+C:\Users\dev\source\repos\Transformer\Transformer\bin\Debug\net6.0-windows\Transformer.deps.json
+C:\Users\dev\source\repos\Transformer\Transformer\bin\Debug\net6.0-windows\Transformer.runtimeconfig.json
+C:\Users\dev\source\repos\Transformer\Transformer\bin\Debug\net6.0-windows\Transformer.dll
+C:\Users\dev\source\repos\Transformer\Transformer\bin\Debug\net6.0-windows\Transformer.pdb
+C:\Users\dev\source\repos\Transformer\Transformer\obj\Debug\net6.0-windows\Transformer.csproj.AssemblyReference.cache
+C:\Users\dev\source\repos\Transformer\Transformer\obj\Debug\net6.0-windows\Transformer.Form1.resources
+C:\Users\dev\source\repos\Transformer\Transformer\obj\Debug\net6.0-windows\Transformer.csproj.GenerateResource.cache
+C:\Users\dev\source\repos\Transformer\Transformer\obj\Debug\net6.0-windows\Transformer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dev\source\repos\Transformer\Transformer\obj\Debug\net6.0-windows\Transformer.AssemblyInfoInputs.cache
+C:\Users\dev\source\repos\Transformer\Transformer\obj\Debug\net6.0-windows\Transformer.AssemblyInfo.cs
+C:\Users\dev\source\repos\Transformer\Transformer\obj\Debug\net6.0-windows\Transformer.csproj.CoreCompileInputs.cache
+C:\Users\dev\source\repos\Transformer\Transformer\obj\Debug\net6.0-windows\Transformer.dll
+C:\Users\dev\source\repos\Transformer\Transformer\obj\Debug\net6.0-windows\refint\Transformer.dll
+C:\Users\dev\source\repos\Transformer\Transformer\obj\Debug\net6.0-windows\Transformer.pdb
+C:\Users\dev\source\repos\Transformer\Transformer\obj\Debug\net6.0-windows\Transformer.genruntimeconfig.cache
+C:\Users\dev\source\repos\Transformer\Transformer\obj\Debug\net6.0-windows\ref\Transformer.dll

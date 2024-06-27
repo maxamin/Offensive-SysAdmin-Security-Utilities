@@ -1,0 +1,46 @@
+---
+- block:
+
+  - name: 'johntheripper : check for existing installation'
+    stat: path=/opt/john/run/john
+    register: jtr
+
+  - name: 'johntheripper : clone repository'
+    git:
+      accept_hostkey: yes
+      clone: yes
+      depth: 1
+      dest: /opt/john
+      force: yes
+      repo: https://github.com/openwall/john.git
+
+  - name: 'johntheripper : install dependencies'    
+    apt:
+      name:
+        - build-essential
+        - libssl-dev
+        - zlib1g-dev
+        - yasm 
+        - pkg-config
+        - libgmp-dev
+        - libpcap-dev
+        - libbz2-dev
+
+  - name: 'jtr : compile'
+    shell: '/bin/bash -lc "./configure && make -s clean && make -sj4"'
+    args:
+      chdir: '/opt/john/src'
+    when: not jtr.stat.exists
+  
+  - name: 'jtr : python scripts'
+    copy:
+      dest: /usr/local/bin
+      mode: 0775
+      remote_src: yes
+      src: "{{ item }}"
+    with_fileglob: "/opt/john/run/*.py"
+    when: not jtr.stat.exists
+
+  tags:
+    - passwords
+    - jtr

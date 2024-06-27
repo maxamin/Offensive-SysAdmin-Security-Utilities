@@ -1,0 +1,6 @@
+{
+	"Name": "This is my crazy encoder",
+	"Encoders": ["hex", "hex", "base64"],
+	"Template": "",
+	"Pattern": "__"
+}

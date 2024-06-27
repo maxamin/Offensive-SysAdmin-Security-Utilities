@@ -1,0 +1,19 @@
+---
+- block:
+
+  - name: 'ssh : install packages'
+    apt:
+      name:
+        - openssh-server        
+      state: present
+      update_cache: yes
+
+  - name: 'ssh : start and enable service'
+    service:
+      enabled: yes
+      name: ssh
+      state: started
+
+  tags:
+    - services
+    - ssh      

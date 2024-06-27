@@ -1,0 +1,5 @@
+---
+- include: amass.yml tags=recon,amass
+- include: nuclei.yml tags=recon,nuclei
+- include: rustscan.yml tags=recon,rustscan
+- include: smbmap.yml tags=recon,smbmap

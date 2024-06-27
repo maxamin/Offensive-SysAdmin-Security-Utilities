@@ -1,0 +1,42 @@
+---
+- block:
+
+  - name: 'powershell : check for existing installation'
+    stat: path=/usr/local/bin/pwsh
+    register: powershell
+
+  - name: 'powershell : install dependencies'
+    apt:
+      name:
+        - gss-ntlmssp
+      state: present
+    when: not powershell.stat.exists
+
+  - name: 'powershell : download package'
+    get_url:
+      url: https://github.com/PowerShell/PowerShell/releases/download/v7.2.0-preview.10/powershell-preview_7.2.0-preview.10-1.deb_amd64.deb
+      dest: /tmp/powershell-preview_7.2.0-preview.10-1.deb_amd64.deb
+    when: not powershell.stat.exists
+
+  - name: 'powershell : install package'
+    apt:
+      deb: /tmp/powershell-preview_7.2.0-preview.10-1.deb_amd64.deb
+      state: present
+    when: not powershell.stat.exists
+
+  - name: 'powershell : create symlink'
+    file:
+      src: /opt/microsoft/powershell/7-preview/pwsh
+      dest: /usr/local/bin/pwsh
+      state: link
+    when: not powershell.stat.exists
+
+  - name: 'powershell : cleanup'
+    file:
+      dest: /tmp/powershell-preview_7.2.0-preview.10-1.deb_amd64.deb
+      state: absent
+    when: not powershell.stat.exists
+    
+  tags:
+    - common
+    - powershell

@@ -1,0 +1,4 @@
+---
+- include: gobuster.yml tags=web,gobuster
+- include: ffuf.yml tags=web,ffuf
+- include: feroxbuster.yml tags=web,feroxbuster

@@ -1,0 +1,28 @@
+<!DOCTYPE GetCode [
+	<!ENTITY YourCode "datahere">
+]>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="RunMe" Condition="'$(USERDOMAIN)'=='DESKTOP-M8IVQ0N'">
+   <RunMe />
+   </Target>
+   <PropertyGroup>
+		<RunCode>
+			&YourCode;
+		</RunCode>
+   </PropertyGroup>
+  <UsingTask
+    TaskName="RunMe"
+    TaskFactory="CodeTaskFactory"
+    AssemblyFile="C:\Windows\Microsoft.Net\Framework\v4.0.30319\Microsoft.Build.Tasks.v4.0.dll" >
+    <ParameterGroup/>
+    <Task>
+      <Using Namespace="System" />
+	  <Using Namespace="System.IO" />
+      <Code Type="class" Language="cs">
+	    <![CDATA[
+			$(RunCode)
+        ]]>
+      </Code>
+    </Task>
+	</UsingTask>
+</Project>

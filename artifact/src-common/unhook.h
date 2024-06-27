@@ -1,0 +1,1 @@
+int unhook(char *);

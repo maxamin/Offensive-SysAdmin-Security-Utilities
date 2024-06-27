@@ -1,0 +1,15 @@
+---
+- block:
+
+  - name: 'utilities : copy windows binaries'
+    copy:
+      src: ../files/windows
+      dest: /opt
+
+  - name: 'utilities : copy powershell scripts'
+    copy:
+      src: ../files/powershell
+      dest: /opt
+
+  tags:
+    - utilities    

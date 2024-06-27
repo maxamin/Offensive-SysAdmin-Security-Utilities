@@ -1,0 +1,6 @@
+{
+	"Name": "This is my first encoder",
+	"Encoders": ["base64"],
+	"Template": "templates/test.c",
+	"Pattern": "__"
+}

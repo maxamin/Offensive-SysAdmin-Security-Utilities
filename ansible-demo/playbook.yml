@@ -1,0 +1,15 @@
+---
+- name: Redteam VM setup
+  hosts: localhost
+  connection: local
+  become: yes
+
+  roles:
+    - common
+    - services
+    - exploitation
+    - lists
+    - passwords
+    - recon
+    - utilities
+    - web

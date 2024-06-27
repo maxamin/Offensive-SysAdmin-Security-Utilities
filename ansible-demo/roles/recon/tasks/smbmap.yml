@@ -1,0 +1,36 @@
+---
+- block:
+
+  - name: 'smbmap : check for existing installation'
+    stat: path=/usr/local/bin/smbmap
+    register: smbmap
+
+  - name: 'smbmap : clone repository'
+    git:
+      accept_hostkey: yes
+      clone: yes
+      depth: 1
+      dest: /tmp/smbmap
+      force: yes
+      repo: https://github.com/ShawnDEvans/smbmap.git
+    when: not smbmap.stat.exists
+
+  - name: 'smbmap : install'
+    copy:
+      dest: /usr/local/bin/smbmap
+      mode: 0775
+      remote_src: yes
+      src: /tmp/smbmap/smbmap.py
+    when: not smbmap.stat.exists
+
+  - name: 'smbmap : cleanup build fragments'
+    file:
+      dest: '{{ item }}'
+      state: absent
+    with_items:      
+      - /tmp/smbmap      
+    when: not smbmap.stat.exists
+
+  tags:
+    - recon
+    - smbmap

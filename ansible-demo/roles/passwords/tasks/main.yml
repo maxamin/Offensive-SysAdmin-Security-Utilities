@@ -1,0 +1,2 @@
+---
+- include: jtr.yml tags=passwords,jtr

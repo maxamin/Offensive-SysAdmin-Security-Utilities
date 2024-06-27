@@ -1,0 +1,14 @@
+﻿  hde64.c
+  Source.cpp
+C:\Users\Arash\source\repos\Lockd\Lockd\HookPatch.h(86,49): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Arash\source\repos\Lockd\Lockd\HookPatch.h(116,43): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Arash\source\repos\Lockd\Lockd\HookPatch.h(128,37): warning C4311: 'type cast': pointer truncation from 'LPBYTE' to 'DWORD'
+C:\Users\Arash\source\repos\Lockd\Lockd\HookPatch.h(128,37): warning C4302: 'type cast': truncation from 'LPBYTE' to 'DWORD'
+C:\Users\Arash\source\repos\Lockd\Lockd\HookPatch.h(128,58): warning C4311: 'type cast': pointer truncation from 'FARPROC' to 'DWORD'
+C:\Users\Arash\source\repos\Lockd\Lockd\HookPatch.h(128,58): warning C4302: 'type cast': truncation from 'FARPROC' to 'DWORD'
+C:\Users\Arash\source\repos\Lockd\Lockd\Source.cpp(308,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 147 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Lockd.vcxproj -> C:\Users\Arash\source\repos\Lockd\x64\Release\Lockd.exe

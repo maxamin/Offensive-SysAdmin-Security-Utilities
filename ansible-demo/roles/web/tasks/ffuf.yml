@@ -1,0 +1,49 @@
+---
+- block:
+
+  - name: 'ffuf : check for existing installation'
+    stat: path=/usr/local/bin/ffuf
+    register: ffuf
+
+  - name: 'ffuf : clone repository'
+    git:
+      accept_hostkey: yes
+      clone: yes
+      depth: 1
+      dest: /tmp/ffuf
+      force: yes
+      repo: https://github.com/ffuf/ffuf.git
+    when: not ffuf.stat.exists
+
+  - name: 'ffuf : exec go get'
+    shell: '/bin/bash -lc "go get"'
+    args:
+      chdir: /tmp/ffuf
+    when: not ffuf.stat.exists
+
+  - name: 'ffuf : exec go build'
+    shell: '/bin/bash -lc "go build"'
+    args:
+      chdir: /tmp/ffuf
+    when: not ffuf.stat.exists
+
+  - name: 'ffuf : install'
+    copy:
+      dest: /usr/local/bin/ffuf
+      mode: 0775
+      remote_src: yes
+      src: /tmp/ffuf/ffuf
+    when: not ffuf.stat.exists
+
+  - name: 'ffuf : cleanup build fragments'
+    file:
+      dest: '{{ item }}'
+      state: absent
+    with_items:
+      - /tmp/ffuf
+      - /root/.go/bin/ffuf
+    when: not ffuf.stat.exists
+
+  tags:
+    - web
+    - ffuf

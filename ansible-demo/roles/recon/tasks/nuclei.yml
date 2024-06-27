@@ -1,0 +1,43 @@
+---
+- block:
+
+  - name: 'nuclei : check for existing installation'
+    stat: path=/usr/local/bin/nuclei
+    register: nuclei
+
+  - name: 'nuclei : clone repository'
+    git:
+      accept_hostkey: yes
+      clone: yes
+      depth: 1
+      dest: /tmp/nuclei
+      force: yes
+      repo: https://github.com/projectdiscovery/nuclei.git
+    when: not nuclei.stat.exists
+
+  - name: 'nuclei : exec make'
+    shell: '/bin/bash -lc "make"'
+    args:
+      chdir: /tmp/nuclei/v2
+    when: not nuclei.stat.exists
+
+  - name: 'nuclei : install'
+    copy:
+      dest: /usr/local/bin/nuclei
+      mode: 0775
+      remote_src: yes
+      src: /tmp/nuclei/v2/nuclei
+    when: not nuclei.stat.exists
+
+  - name: 'nuclei : cleanup build fragments'
+    file:
+      dest: '{{ item }}'
+      state: absent
+    with_items:
+      - /tmp/nuclei
+      - /root/.go/bin/nuclei
+    when: not nuclei.stat.exists
+
+  tags:
+    - web
+    - nuclei

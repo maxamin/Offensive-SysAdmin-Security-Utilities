@@ -1,0 +1,43 @@
+---
+- block:
+
+  - name: 'rustscan : check for existing installation'
+    stat: path=/usr/local/bin/rustscan
+    register: rustscan
+
+  - name: 'rustscan : clone repository'
+    git:
+      accept_hostkey: yes
+      clone: yes
+      depth: 1
+      dest: /tmp/rustscan
+      force: yes
+      repo: https://github.com/RustScan/RustScan.git
+    when: not rustscan.stat.exists
+
+  - name: 'rustscan : build and install'
+    shell: '/bin/bash -lc "cargo build --release"'
+    args:
+      chdir: '/tmp/rustscan'
+    when: not rustscan.stat.exists
+
+  - name: 'rustscan : install'
+    copy:
+      dest: /usr/local/bin/rustscan
+      mode: 0775
+      remote_src: yes
+      src: /tmp/rustscan/target/release/rustscan
+    when: not rustscan.stat.exists
+
+  - name: 'rustscan : cleanup build fragments'
+    file:
+      dest: '{{ item }}'
+      state: absent
+    with_items:      
+      - /tmp/rustscan
+      - /root/.cargo/bin/rustscan
+    when: not rustscan.stat.exists
+
+  tags:
+    - web
+    - rustscan

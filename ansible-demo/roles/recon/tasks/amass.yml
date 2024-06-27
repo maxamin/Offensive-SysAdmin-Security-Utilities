@@ -1,0 +1,43 @@
+---
+- block:
+
+  - name: 'amass : check for existing installation'
+    stat: path=/usr/local/bin/amass
+    register: amass
+
+  - name: 'amass : clone repository'
+    git:
+      accept_hostkey: yes
+      clone: yes
+      depth: 1
+      dest: /tmp/amass
+      force: yes
+      repo: https://github.com/OWASP/Amass.git
+    when: not amass.stat.exists
+
+  - name: 'amass : exec go build'
+    shell: '/bin/bash -lc "go build"'
+    args:
+      chdir: /tmp/amass/cmd/amass
+    when: not amass.stat.exists
+
+  - name: 'amass : install'
+    copy:
+      dest: /usr/local/bin/amass
+      mode: 0775
+      remote_src: yes
+      src: /tmp/amass/cmd/amass/amass
+    when: not amass.stat.exists
+
+  - name: 'amass : cleanup build fragments'
+    file:
+      dest: '{{ item }}'
+      state: absent
+    with_items:
+      - /tmp/amass
+      - /root/.go/bin/amass
+    when: not amass.stat.exists
+
+  tags:
+    - recon
+    - amass
