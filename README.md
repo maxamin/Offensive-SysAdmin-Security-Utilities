@@ -1,4 +1,8 @@
+**Notice:** I am not responsible for any actions taken using the information provided in this repository. This repository is shared strictly for educational purposes, aimed at blue teamers, malware reverse engineers, and threat hunters. The tools and instructions provided here are intended to help cybersecurity professionals understand and mitigate the threats posed by Threat actors.
 
+Any misuse of the information contained in this repository, including but not limited to illegal activities, is strictly prohibited and entirely the responsibility of the individual(s) involved. By using the materials provided here, you agree to use them responsibly and solely for lawful purposes.
+
+This repository is provided "as is" without any warranties, express or implied. The author is not liable for any damage or loss caused by the use or misuse of the information and tools provided.
 # Project Repository
 
 Welcome to our multi-project repository. This repository includes the following projects:
