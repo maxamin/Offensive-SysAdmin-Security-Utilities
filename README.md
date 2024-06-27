@@ -31,7 +31,6 @@ Welcome to our multi-project repository. This repository includes the following 
 - [C# Files](#csharp-files)
 - [ASM Files](#asm-files)
 - [VB Files](#vb-files)
-- [Contributing](#contributing)
 
 
 ## VPN Installer
